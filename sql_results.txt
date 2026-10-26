@@ -1,0 +1,262 @@
+
+=== Q1 | SELECT statement | List all franchises with home city and status
+                  team_name  home_city  status
+        Chennai Super Kings    Chennai  Active
+            Deccan Chargers  Hyderabad Defunct
+             Delhi Capitals      Delhi  Active
+              Gujarat Lions     Rajkot Defunct
+            Kings XI Punjab Chandigarh  Active
+       Kochi Tuskers Kerala      Kochi Defunct
+      Kolkata Knight Riders    Kolkata  Active
+             Mumbai Indians     Mumbai  Active
+              Pune Warriors       Pune Defunct
+           Rajasthan Royals     Jaipur  Active
+     Rising Pune Supergiant       Pune Defunct
+Royal Challengers Bangalore  Bangalore  Active
+        Sunrisers Hyderabad  Hyderabad  Active
+
+=== Q2 | Restrict and sort | Matches won by 70 or more runs, biggest first
+ match_id  season  win_by_runs player_of_match
+       44    2017          146     LMP Simmons
+      620    2016          144  AB de Villiers
+       60    2008          140     BB McCullum
+      557    2015          138        CH Gayle
+      411    2013          130        CH Gayle
+    11147    2019          118      J Bairstow
+      296    2011          111    AC Gilchrist
+      115    2008          105       SR Watson
+     7934    2018          102    Ishan Kishan
+      183    2010           98    SR Tendulkar
+        9    2017           97       SV Samson
+      542    2015           97     BB McCullum
+      465    2014           93        SK Raina
+      122    2009           92  M Muralitharan
+      132    2009           92    SR Tendulkar
+      403    2013           87       AM Rahane
+      380    2012           86         M Vijay
+      404    2013           86      MEK Hussey
+      280    2011           85        CH Gayle
+      613    2016           85         A Nehra
+       27    2017           82 NM Coulter-Nile
+      300    2011           82        S Dhawan
+      626    2016           82         V Kohli
+      623    2016           80       KH Pandya
+    11341    2019           80        MS Dhoni
+      144    2009           78        MS Dhoni
+      145    2009           78        GC Smith
+      435    2013           77        SK Raina
+      287    2011           76        BA Bhatt
+      119    2009           75        R Dravid
+      313    2012           74       RA Jadeja
+      466    2014           72      GJ Maxwell
+      574    2015           71  AB de Villiers
+     7906    2018           71          N Rana
+
+=== Q3 | Restrict (IN, LIKE, BETWEEN) | 2016 to 2019 matches at venues whose name contains 'Stadium' in Mumbai, Chennai or Kolkata
+ season  matches             venue_name
+   2016        4       Wankhede Stadium
+   2017        8       Wankhede Stadium
+   2018        9       Wankhede Stadium
+   2018        1 MA Chidambaram Stadium
+   2019        8 MA Chidambaram Stadium
+   2019        7       Wankhede Stadium
+
+=== Q4 | Single-row functions | Player-of-the-match names in upper case with their length and initials
+    name upper_name  name_length first_letter
+ V Kohli    V KOHLI            7            V
+V Sehwag   V SEHWAG            8            V
+VR Aaron   VR AARON            8            V
+
+=== Q5 | Conditional expression (CASE) | Classify the 2019 winning margins
+ match_id  win_by_runs  win_by_wickets        margin_type
+    11137            0               7 Dominant (7+ wkts)
+    11138            0               6    Close (wickets)
+    11139           37               0       Close (runs)
+    11140           14               0       Close (runs)
+    11141            0               6    Close (wickets)
+    11142           28               0       Close (runs)
+    11143            6               0       Close (runs)
+    11144            0               5    Close (wickets)
+
+=== Q6 | Group functions | Overall dataset summary
+ matches  with_result  seasons  dl_matches  biggest_run_win  avg_run_margin
+     756          752       12          19              146            29.8
+
+=== Q7 | GROUP BY and HAVING | Seasons with more than 70 matches
+ season  matches
+   2011       73
+   2012       74
+   2013       76
+
+=== Q8 | Joins | Titles won (winner of the Final), by franchise
+            team_name  titles
+       Mumbai Indians       4
+  Chennai Super Kings       3
+Kolkata Knight Riders       2
+      Deccan Chargers       1
+     Rajasthan Royals       1
+  Sunrisers Hyderabad       1
+
+=== Q9 | Joins + GROUP BY | Matches won and win count per franchise
+                  team_name  wins
+             Mumbai Indians   109
+        Chennai Super Kings   100
+      Kolkata Knight Riders    92
+Royal Challengers Bangalore    84
+            Kings XI Punjab    82
+             Delhi Capitals    77
+           Rajasthan Royals    75
+        Sunrisers Hyderabad    58
+            Deccan Chargers    29
+     Rising Pune Supergiant    15
+              Gujarat Lions    13
+              Pune Warriors    12
+       Kochi Tuskers Kerala     6
+
+=== Q10 | Subquery + UNION ALL | Win percentage = wins / matches played (matches with a result)
+                  team_name  played  wins  win_pct
+        Chennai Super Kings     164   100     61.0
+             Mumbai Indians     187   109     58.3
+        Sunrisers Hyderabad     108    58     53.7
+      Kolkata Knight Riders     178    92     51.7
+           Rajasthan Royals     145    75     51.7
+Royal Challengers Bangalore     177    84     47.5
+            Kings XI Punjab     176    82     46.6
+             Delhi Capitals     175    77     44.0
+            Deccan Chargers      75    29     38.7
+
+=== Q11 | Toss analysis | How often did the toss winner also win the match?
+ matches_with_result  toss_winner_won  pct
+                 752              393 52.3
+
+=== Q12 | Trend | Share of toss winners who chose to field, by season
+ season  matches  chose_field  field_pct
+   2008       58           32       55.2
+   2009       57           22       38.6
+   2010       60           21       35.0
+   2011       73           48       65.8
+   2012       74           37       50.0
+   2013       76           31       40.8
+   2014       60           41       68.3
+   2015       59           34       57.6
+   2016       60           49       81.7
+   2017       59           48       81.4
+   2018       60           50       83.3
+   2019       60           50       83.3
+
+=== Q13 | Chasing vs defending | Wins by batting first versus chasing, by season (a run win = batting first side won)
+ season  won_batting_first  won_chasing  chase_win_pct
+   2008                 24           34           58.6
+   2009                 27           29           51.8
+   2010                 31           28           47.5
+   2011                 33           39           54.2
+   2012                 34           40           54.1
+   2013                 37           37           50.0
+   2014                 22           37           62.7
+   2015                 32           24           42.9
+   2016                 21           39           65.0
+   2017                 26           32           55.2
+   2018                 28           32           53.3
+   2019                 22           35           61.4
+
+=== Q14 | Aggregation | Top 8 players by player-of-the-match awards
+player_of_match  awards
+       CH Gayle      21
+ AB de Villiers      20
+      DA Warner      17
+       MS Dhoni      17
+      RG Sharma      17
+      YK Pathan      16
+      SR Watson      15
+       SK Raina      14
+
+=== Q15 | Outer join | Franchises that never won the title
+                  team_name  status
+             Delhi Capitals  Active
+              Gujarat Lions Defunct
+            Kings XI Punjab  Active
+       Kochi Tuskers Kerala Defunct
+              Pune Warriors Defunct
+     Rising Pune Supergiant Defunct
+Royal Challengers Bangalore  Active
+
+=== Q16 | Self join | Pairs of franchises that share a home city
+         team_1                 team_2 home_city
+Deccan Chargers    Sunrisers Hyderabad Hyderabad
+  Pune Warriors Rising Pune Supergiant      Pune
+
+=== Q17 | Subquery | Matches with a run margin above the average run margin
+ above_average_run_wins
+                    124
+
+=== Q18 | Correlated subquery | Biggest win by runs in each season
+ season  win_by_runs                      winner
+   2008          140       Kolkata Knight Riders
+   2009           92         Chennai Super Kings
+   2009           92              Mumbai Indians
+   2010           98              Mumbai Indians
+   2011          111             Kings XI Punjab
+   2012           86         Chennai Super Kings
+   2013          130 Royal Challengers Bangalore
+   2014           93         Chennai Super Kings
+   2015          138 Royal Challengers Bangalore
+   2016          144 Royal Challengers Bangalore
+   2017          146              Mumbai Indians
+   2018          102              Mumbai Indians
+   2019          118         Sunrisers Hyderabad
+
+=== Q19 | Set operators (INTERSECT / EXCEPT) | Franchises that won matches in 2008 and also in 2019 / only in 2008
+                                                                                                                               won_in_both    only_in_2008
+Chennai Super Kings, Delhi Capitals, Kings XI Punjab, Kolkata Knight Riders, Mumbai Indians, Rajasthan Royals, Royal Challengers Bangalore Deccan Chargers
+
+=== Q20 | Set operator (UNION) | Cities that hosted matches in 2008 or 2019 (count)
+ cities
+      9
+
+=== Q21 | DML | Insert, update and delete a test match (rolled back so the data stays unchanged)
+INSERT  -> matches now: 757
+UPDATE  -> (99999, 25)
+DELETE  -> matches now: 756
+
+=== Q22 | View | Create a reusable team record view and query it
+                  team_name  wins  titles
+             Mumbai Indians   109       4
+        Chennai Super Kings   100       3
+      Kolkata Knight Riders    92       2
+Royal Challengers Bangalore    84       0
+            Kings XI Punjab    82       0
+
+=== Q23 | Window function | Team with the most wins in each season
+ season             team_name  wins
+   2008      Rajasthan Royals    13
+   2009        Delhi Capitals    10
+   2010        Mumbai Indians    11
+   2011   Chennai Super Kings    11
+   2012 Kolkata Knight Riders    12
+   2013        Mumbai Indians    13
+   2014       Kings XI Punjab    12
+   2015        Mumbai Indians    10
+   2015   Chennai Super Kings    10
+   2016   Sunrisers Hyderabad    11
+   2017        Mumbai Indians    12
+   2018   Chennai Super Kings    11
+   2019        Mumbai Indians    11
+
+=== Q24 | Outliers (IQR rule) | Run-win margins above Q3 + 1.5 x IQR
+ q1  q3  upper_fence  outlier_matches
+ 11  39         81.0               23
+
+=== Q25 | Home advantage | Win percentage when the match city equals the team's home city
+ home_matches  home_wins  home_win_pct
+          561        315          56.1
+
+=== Q26 | Venue analysis | Busiest venues and how often the chasing side won there
+                                  venue_name       city  matches  chase_win_pct
+                       M Chinnaswamy Stadium  Bangalore       80           56.6
+                                Eden Gardens    Kolkata       77           58.4
+                            Feroz Shah Kotla      Delhi       74           51.4
+                            Wankhede Stadium     Mumbai       73           51.4
+          Rajiv Gandhi International Stadium  Hyderabad       64           55.6
+                      MA Chidambaram Stadium    Chennai       57           39.3
+Punjab Cricket Association IS Bindra Stadium Chandigarh       56           57.1
+                      Sawai Mansingh Stadium     Jaipur       47           68.1
